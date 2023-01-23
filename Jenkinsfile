@@ -84,7 +84,7 @@ pipeline {
             }
             steps {
                 dir('users-api'){
-                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/frontend:$BUILD_ID .'
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/users-api:$BUILD_ID .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/users-api:$BUILD_ID'
                     sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/users-api:$BUILD_ID'
                     sh 'docker logout'
