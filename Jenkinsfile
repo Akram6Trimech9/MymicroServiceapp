@@ -7,8 +7,7 @@ pipeline {
          stage('Checkout'){
             agent any
             steps{
-                //Changez avec votre lien gitlab
-                git branch: 'main', url: 'https://gitlab.com/eps_devops/microservice-app.git'
+                git branch: 'main', url: 'https://github.com/Akram6Trimech9/MymicroServiceapp.git'
             }
         }
         stage('Init'){
