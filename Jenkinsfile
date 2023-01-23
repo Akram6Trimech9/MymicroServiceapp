@@ -51,9 +51,9 @@ pipeline {
             }
             steps {
                 dir('auth-api and Analysis'){
-                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/auth-api:$BUILD_ID .'
-                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/auth-api:$BUILD_ID'
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/auth-api:$BUILD_ID'
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/auth-api .'
+                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/auth-api'
+                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/auth-api'
                     sh 'docker logout'
                 }
             }
@@ -66,9 +66,9 @@ pipeline {
             }
             steps {
                 dir('frontend'){
-                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/frontend:$BUILD_ID .'
-                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/frontend:$BUILD_ID'
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/frontend$BUILD_ID'
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/frontend .'
+                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/frontend'
+                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/frontend'
                     sh 'docker logout'
                 }
             }
@@ -81,9 +81,9 @@ pipeline {
             }
             steps {
                 dir('log-message-processor'){
-                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/log-message-processor:$BUILD_ID .'
-                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/log-message-processor:$BUILD_ID'
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/log-message-processor:$BUILD_ID'
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/log-message-processor .'
+                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/log-message-processor'
+                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/log-message-processor'
                     sh 'docker logout'
                 }
             }
@@ -96,9 +96,9 @@ pipeline {
             }
             steps {
                 dir('todos-api'){
-                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/todos-api:$BUILD_ID .'
-                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/todos-api:$BUILD_ID'
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/todos-api:$BUILD_ID'
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/todos-api .'
+                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/todos-api'
+                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/todos-api'
                     sh 'docker logout'
                 }
             }
@@ -111,19 +111,25 @@ pipeline {
             }
             steps {
                 dir('users-api'){
-                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/users-api:$BUILD_ID .'
-                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/users-api:$BUILD_ID'
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/users-api:$BUILD_ID'
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/users-api .'
+                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/users-api'
+                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/users-api'
                     sh 'docker logout'
                 }
             }
         }
-       // stage('deplou on k8s'){
-         //   steps {
-           //     sshagent(['k8s']) {
-             //   sh "scp"
-               // }
-            // }
-       // }
+        stage('deplou on k8s'){
+            steps {
+              sshagent(['k8s']) {
+                  script{ 
+                      try{
+                          sh "ssh root@24.199.98.234 kubectl apply -f . "
+                      }catch(error){ 
+                          sh "ssh root@24.199.98.234 kubectl apply -f . "
+                      }
+                  }
+              }
+            }
+        }
     }
 }
