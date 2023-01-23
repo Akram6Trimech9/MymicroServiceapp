@@ -1,5 +1,8 @@
 pipeline {
-    agent none
+    agent any
+    tools{ 
+      git : 'git'
+    }
     environment {
         DOCKERHUB_CREDENTIALS = credentials('Docker-hub-repo')
     }
