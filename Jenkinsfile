@@ -37,6 +37,11 @@ pipeline {
             }
         }
         stage('Sonarqube quality gate') {
+            agent any
+            when {
+                changeset "**/todos-api/*.*"
+                beforeAgent true
+            } 
             steps {
                 timeout(time: 10, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
