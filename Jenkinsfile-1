@@ -43,8 +43,6 @@ pipeline {
                 dir('auth-api'){
                     sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/auth-api .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/auth-api '
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/auth-api '
-                    sh 'docker logout'
                 }
             }
         }
@@ -53,8 +51,6 @@ pipeline {
                 dir('frontend'){
                     sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/frontend .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/frontend'
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/frontend$'
-                    sh 'docker logout'
                 }
             }
         }
@@ -63,8 +59,6 @@ pipeline {
                 dir('log-message-processor'){
                     sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/log-message-processor: .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/log-message-processor '
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/log-message-processor '
-                    sh 'docker logout'
                 }
             }
         }
@@ -73,8 +67,6 @@ pipeline {
                 dir('todos-api'){
                     sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/todos-api .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/todos-api '
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/todos-api '
-                    sh 'docker logout'
                 }
             }
         }
@@ -83,8 +75,6 @@ pipeline {
                 dir('users-api'){
                     sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/users-api .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/users-api '
-                    sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/users-api '
-                    sh 'docker logout'
                 }
             }
         }
