@@ -29,7 +29,7 @@ pipeline {
                              script {
                                 def scannerHome = tool 'SonarQube';
                                 withSonarQubeEnv('sonar') {
-                                sh "${tool("sonarscan ")}/bin/sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
+                                sh "${tool("SonarQube")}/bin/sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
                                 }
                              }
                     }
