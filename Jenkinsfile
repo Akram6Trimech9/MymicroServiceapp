@@ -26,10 +26,12 @@ pipeline {
                 dir('todos-api'){
                     nodejs(nodeJSInstallationName: 'nodejs'){
                     sh 'npm install'
-                        withSonarQubeEnv('sonar'){
-                           sh "npm install sonar-scanner"
-                           sh "npm run sonar"
-                        }
+                             script {
+                                def scannerHome = tool 'sonarscan';
+                                withSonarQubeEnv('sonarqube') {
+                                sh "${tool("sonarscan ")}/bin/sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
+                                }
+                             }
                     }
                 }
             }
