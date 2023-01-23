@@ -56,7 +56,7 @@ pipeline {
         }
         stage('Build log-message-processor ') {
             steps {
-                dir('log-message-processor'){,,,,,,,,,,,,,,,,,,,,,,,,,,
+                dir('log-message-processor') {
                     sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/log-message-processor .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/log-message-processor '
                 }
