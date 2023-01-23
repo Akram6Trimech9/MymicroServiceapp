@@ -7,7 +7,7 @@ pipeline {
          stage('Checkout'){
             agent any
             steps{
-                git url: 'https://github.com/naiveskill/devops_cred.git', branch: 'main'
+                git url: 'https://github.com/Akram6Trimech9/MymicroServiceapp.git', branch: 'main'
             }
         }
         stage('Init'){
