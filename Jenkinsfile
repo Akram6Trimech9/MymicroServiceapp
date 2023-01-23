@@ -26,6 +26,10 @@ pipeline {
                 dir('todos-api'){
                     nodejs(nodeJSInstallationName: 'nodejs'){
                     sh 'npm install'
+                        withSonarQubeEnv('sonar'){
+                           sh "npm install sonar-scanner"
+                           sh "npm run sonar"
+                        }
                     }
                 }
             }
