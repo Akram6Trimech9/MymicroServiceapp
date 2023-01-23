@@ -36,6 +36,13 @@ pipeline {
                 }
             }
         }
+        stage('Sonarqube quality gate') {
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
         stage('Build auth-api ') {
             agent any
             when {
@@ -108,13 +115,6 @@ pipeline {
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/users-api:$BUILD_ID'
                     sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/users-api:$BUILD_ID'
                     sh 'docker logout'
-                }
-            }
-        }
-        stage('Sonarqube quality gate') {
-            steps {
-                timeout(time: 10, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
                 }
             }
         }
