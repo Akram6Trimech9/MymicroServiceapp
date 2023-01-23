@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 dir('todos-api'){
-                    nodejs(nodeJSInstallation: 'nodejs'){
+                    nodejs(nodeJSInstallationName: 'nodejs'){
                     sh 'npm install'
                     }
                 }
