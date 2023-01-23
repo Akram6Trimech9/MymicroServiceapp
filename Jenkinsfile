@@ -27,7 +27,7 @@ pipeline {
                     nodejs(nodeJSInstallationName: 'nodejs'){
                     sh 'npm install'
                              script {
-                                def scannerHome = tool 'sonarscan';
+                                def scannerHome = tool 'SonarQube';
                                 withSonarQubeEnv('sonarqube') {
                                 sh "${tool("sonarscan ")}/bin/sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
                                 }
