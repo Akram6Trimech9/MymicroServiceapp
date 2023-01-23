@@ -121,7 +121,7 @@ pipeline {
         stage('deplou on k8s'){
             steps {
               sshagent(['k8s']) {
-                  script{ 
+                  script { 
                       try{
                           sh "ssh root@24.199.98.234 kubectl apply -f . "
                       }catch(error){ 
