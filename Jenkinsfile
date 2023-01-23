@@ -23,8 +23,10 @@ pipeline {
                 beforeAgent true
             }
             steps {
-                dir('auth-api and an'){
-                    sh "sonar-scanner-cli -Dsonar.projectKey=go_project -Dsonar.sources=auth-api -Dsonar.language=go"
+                dir('auth-api and Analysis'){
+                   withSonarQubeEnv(installationName : 'sq1') { 
+                    sh "sonar-scanner-cli -Dsonar.projectKey=go_project -Dsonar.language=go"
+                   }
                     sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/auth-api:$BUILD_ID .'
                     sh 'docker push $DOCKERHUB_CREDENTIALS_USR/auth-api:$BUILD_ID'
                     sh 'docker rmi $DOCKERHUB_CREDENTIALS_USR/auth-api:$BUILD_ID'
