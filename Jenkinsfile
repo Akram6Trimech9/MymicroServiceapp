@@ -4,7 +4,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('Docker-hub-repo')
     }
     stages {
-         stage('Checkout'){
+        stage('Checkout'){
             agent any
             steps{
                 git url: 'https://github.com/Akram6Trimech9/MymicroServiceapp.git', branch: 'main'
@@ -16,7 +16,7 @@ pipeline {
             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-       stage('Build auth-api') {
+        stage('Build auth-api') {
             agent any
             when {
                 changeset "**/auth-api/*.*"
