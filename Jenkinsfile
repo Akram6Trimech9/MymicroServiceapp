@@ -127,7 +127,7 @@ pipeline {
             steps {
               sshagent(['k8s']) {                     
                         sh 'ssh root@24.199.98.234 kubectl apply -f .' 
-                 }
+                 
               }
             }
         }
