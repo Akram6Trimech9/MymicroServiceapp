@@ -118,5 +118,12 @@ pipeline {
                 }
             }
         }
+       // stage('deplou on k8s'){
+         //   steps {
+           //     sshagent(['k8s']) {
+             //   sh "scp"
+               // }
+            // }
+       // }
     }
 }
