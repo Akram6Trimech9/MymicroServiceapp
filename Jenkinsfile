@@ -123,13 +123,12 @@ pipeline {
                 }
             }
         }
-        stage('deplou on k8s'){
-            steps {
-              sshagent(['k8s']) {                     
-                        sh 'ssh root@24.199.98.234 kubectl apply -f .' 
-                 
-              }
-            }
-        }
+    //    stage('deplou on k8s'){
+           // steps {
+          //    sshagent(['k8s']) {                     
+            //            sh 'ssh root@24.199.98.234 kubectl apply -f .'    
+         //}
+         //   }
+      //  }
     }
 }
